@@ -28,4 +28,4 @@ The captured photo will save a Base64 version of itself to the ng-model's defini
 
 More extensive documentation to follow.
 
-_Built by [Zach Dunn](https://github.com/zachdunn) from work on the [Robin Platform](http://getrobin)_
+_Built by [Zach Dunn](https://github.com/zachdunn) from work on the [Robin Platform](http://getrobin.com)_
