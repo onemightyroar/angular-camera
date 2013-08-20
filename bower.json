@@ -6,7 +6,7 @@
     "Zach Dunn <zach@onemightyroar.com>"
   ],
   "description": "A camera directive for Angular",
-  "main": "./angular-camera.js",
+  "main": "./src/directives/angular-camera.js",
   "keywords": [
     "webcam",
     "camera",
