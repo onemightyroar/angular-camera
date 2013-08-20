@@ -101,11 +101,9 @@ angular.module('omr.directives', [])
                 # Wait for overlay image to load before making dataURL
                 scope.$apply ->
                   scope.media = canvas.toDataURL('image/jpeg')
-                  scope.enabled = false
                 scope.captureCallback(scope.media) if scope.captureCallback?
             else
               scope.media = canvas.toDataURL('image/jpeg') # Assign to ngModel
-              #scope.enabled = false # Turn off camera feed
               scope.captureCallback(scope.media) if scope.captureCallback?
 
             scope.hideUI = false
