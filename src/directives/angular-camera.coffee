@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('omr.directives')
+angular.module('omr.directives', [])
   .directive 'ngCamera', ($timeout) ->
     require: 'ngModel'
     template: '<div class="ng-camera clearfix">

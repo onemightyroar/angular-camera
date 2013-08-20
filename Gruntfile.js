@@ -21,9 +21,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'src/directive',
+                    cwd: 'src/directives',
                     src: '{,*/}*.coffee',
-                    dest: 'src/directive',
+                    dest: 'src/directives',
                     ext: '.js'
                 }]
             }
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
         },
         ngmin: {
             src: {
-                src: '<%= concat.src.dest %>',
+                src: '<%= concat.src.src %>',
                 dest: '<%= concat.src.dest %>'
             }
         },
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('build', ['dev', 'clean:dist', 'ngmin', 'concat', 'uglify']);
+    grunt.registerTask('build', ['dev', 'clean:dist', 'concat', 'ngmin', 'uglify']);
 
     grunt.registerTask('dev', ['coffee:dev']);
 
