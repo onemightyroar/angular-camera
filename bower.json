@@ -1,0 +1,20 @@
+{
+  "name": "angular-camera",
+  "version": "0.1.0",
+  "homepage": "https://github.com/onemightyroar/angular-camera",
+  "authors": [
+    "Zach Dunn <zach@onemightyroar.com>"
+  ],
+  "description": "A camera directive for Angular",
+  "main": "./angular-camera.js",
+  "keywords": [
+    "webcam",
+    "camera",
+    "photo",
+    "video"
+  ],
+  "dependencies": {
+    "angular": "1.2.0rc1"
+  },
+  "license": "MIT"
+}
