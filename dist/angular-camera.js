@@ -71,8 +71,7 @@
                 if (scope.overlaySrc != null) {
                   scope.addFrame(context, scope.overlaySrc, function (image) {
                     scope.$apply(function () {
-                      scope.media = canvas.toDataURL('image/jpeg');
-                      return scope.enabled = false;
+                      return scope.media = canvas.toDataURL('image/jpeg');
                     });
                     if (scope.captureCallback != null) {
                       return scope.captureCallback(scope.media);
