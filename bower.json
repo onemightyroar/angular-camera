@@ -14,7 +14,7 @@
     "video"
   ],
   "dependencies": {
-    "angular": "1.2.0rc1"
+    "angular": "1.0.7"
   },
   "license": "GNU"
 }
