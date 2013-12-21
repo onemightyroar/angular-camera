@@ -2,7 +2,8 @@
   'use strict';
   angular.module('omr.directives', []).directive('ngCamera', [
     '$timeout',
-    function ($timeout) {
+    '$sce',
+    function ($timeout, $sce) {
       return {
         require: 'ngModel',
         template: '<div class="ng-camera clearfix">        <p ng-hide="isLoaded">Loading Camera...</p>        <p ng-show="noCamera">Couldn\'t find a camera to use</p>        <div class="ng-camera-stack" ng-hide="!isLoaded">          <div class="ng-camera-countdown" ng-show="activeCountdown">            <p class="tick">{{countdownText}}</p>          </div>          <img class="ng-camera-overlay" ng-hide="!overlaySrc" ng-src="{{overlaySrc}}" width="{{width}}" height="{{height}}">          <video id="ng-camera-feed" autoplay width="{{width}}" height="{{height}}" src="{{videoStream}}">Install Browser\'s latest version</video>          <canvas id="ng-photo-canvas" width="{{width}}" height="{{height}}" style="display:none;"></canvas>        </div>        <div class="ng-camera-controls" ng-hide="hideUI">          <button class="btn ng-camera-take-btn" ng-click="takePicture()">Take Picture</button>        </div>      </div>',
@@ -24,14 +25,20 @@
           scope.activeCountdown = false;
           navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
           window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+          scope.$on('$destroy', function () {
+            if (scope.stream && typeof scope.stream.stop === 'function') {
+              scope.stream.stop();
+            }
+          });
           scope.enableCamera = function () {
             return navigator.getUserMedia({
               audio: false,
               video: true
             }, function (stream) {
               return scope.$apply(function () {
+                scope.stream = stream;
                 scope.isLoaded = true;
-                return scope.videoStream = window.URL.createObjectURL(stream);
+                return scope.videoStream = $sce.trustAsResourceUrl(window.URL.createObjectURL(stream));
               });
             }, function (error) {
               return scope.$apply(function () {
