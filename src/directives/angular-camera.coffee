@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('omr.directives', [])
-  .directive 'ngCamera', ($timeout) ->
+  .directive 'ngCamera', ($timeout, $sce) ->
     require: 'ngModel'
     template: '<div class="ng-camera clearfix">
         <p ng-hide="isLoaded">Loading Camera...</p>
@@ -38,7 +38,11 @@ angular.module('omr.directives', [])
       # Remap common references
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia
       window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL
-
+      scope.$on('$destroy', () ->
+        if scope.stream and typeof scope.stream.stop == 'function'
+          scope.stream.stop()
+          return
+      )
       ###*
       * @description Set mediastream source and notify camera
       ###
@@ -48,8 +52,9 @@ angular.module('omr.directives', [])
           video: true
         , (stream) ->
           scope.$apply ->
+            scope.stream = stream
             scope.isLoaded = true
-            scope.videoStream = window.URL.createObjectURL(stream)
+            scope.videoStream = $sce.trustAsResourceUrl(window.URL.createObjectURL(stream))
         , (error) ->
           scope.$apply ->
             scope.isLoaded = true

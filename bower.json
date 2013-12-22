@@ -1,6 +1,6 @@
 {
   "name": "angular-camera",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/onemightyroar/angular-camera",
   "authors": [
     "Zach Dunn <zach@onemightyroar.com>"
@@ -14,7 +14,7 @@
     "video"
   ],
   "dependencies": {
-    "angular": "1.0.7"
+    "angular": "~1.2.0"
   },
   "license": "GNU"
 }
