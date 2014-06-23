@@ -46,13 +46,30 @@ module.exports = function(grunt) {
                     'dist/angular-camera.min.js': '<%= concat.src.dest %>'
                 }
             }
+        },
+        compass: {
+            options: {
+              sassDir: 'src/styles'
+            },
+            dev: {
+              options: {
+                outputStyle: 'expanded',
+                cssDir: 'src/styles'
+              }
+            },
+            dist: {
+              options: {
+                outputStyle: 'compressed',
+                cssDir: 'dist'
+              }
+            }
         }
     });
 
 
-    grunt.registerTask('build', ['dev', 'clean:dist', 'concat', 'ngmin', 'uglify']);
+    grunt.registerTask('build', ['dev', 'clean:dist', 'concat', 'ngmin', 'uglify', 'compass:dist']);
 
-    grunt.registerTask('dev', ['coffee:dev']);
+    grunt.registerTask('dev', ['coffee:dev', 'compass:dev']);
 
     grunt.registerTask('default', ['build']);
 };
