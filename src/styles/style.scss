@@ -1,0 +1,19 @@
+.ng-camera {
+  position: relative;
+
+  .ng-camera-controls {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+  }
+
+  .ng-camera-stack {
+
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+}

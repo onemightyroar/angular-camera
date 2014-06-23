@@ -6,7 +6,10 @@
     "Zach Dunn <zach@onemightyroar.com>"
   ],
   "description": "A camera directive for Angular",
-  "main": "dist/angular-camera.js",
+  "main": [
+    "dist/angular-camera.js",
+    "dist/style.css"
+  ],
   "keywords": [
     "webcam",
     "camera",
@@ -14,7 +17,8 @@
     "video"
   ],
   "dependencies": {
-    "angular": "~1.2.0"
+    "angular": "~1.2.0",
+    "bootstrap": "~3"
   },
   "license": "GNU"
 }

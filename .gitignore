@@ -1,5 +1,9 @@
 *.js
+*.css
 !Gruntfile.js
 !dist/*.js
+!dist/*.css
 node_modules/
+bower_components/
+.sass-cache/
 .idea
