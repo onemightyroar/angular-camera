@@ -134,7 +134,6 @@ angular.module('omr.directives', [])
       ###*
       * @description Add overlay frame to canvas render
       * @param {Object} context Reference to target canvas context
-
       ###
       scope.addFrame = (context, url, callback = false) ->
         # Load returned overlay image and draw onto photo canvas
