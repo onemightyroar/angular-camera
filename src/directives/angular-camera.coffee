@@ -26,8 +26,10 @@ angular.module('omr.directives', [])
       media: '=ngModel'
       width: '@'
       height: '@'
+      captureWidth: '@'
+      captureHeight: '@'
       overlaySrc: '='
-      countdown: '@'
+      countdown: '='
       captureCallback: '&capture'
       enabled: '='
       captureMessage: "@"
@@ -78,7 +80,7 @@ angular.module('omr.directives', [])
         canvas = window.document.getElementById('ng-photo-canvas')
 
         # Get countdown time in seconds from attribute
-        countdownTime = if scope.countdown? then parseInt(scope.countdown) * 1000 else 0
+        countdownTime = if scope.countdown? then scope.countdown * 1000 else 0
 
         # Make sure there's a canvas to work with
         if canvas?
@@ -98,7 +100,8 @@ angular.module('omr.directives', [])
 
             # Draw current video feed to canvas (photo source)
             cameraFeed = window.document.getElementById('ng-camera-feed')
-            context.drawImage cameraFeed, 0, 0, scope.width, scope.height
+
+            context.drawImage cameraFeed, 0, 0, scope.captureWidth || scope.width, scope.captureHeight || scope.height
 
             # Add overlay if present
             if scope.overlaySrc?
@@ -114,12 +117,12 @@ angular.module('omr.directives', [])
             scope.hideUI = false
           , countdownTime + 1000 # Add extra second for final message
 
-          scope.countdownText = parseInt(scope.countdown)
+          scope.countdownText = scope.countdown
 
           # Countdown ticker until photo
           countdownTick = setInterval ->
             scope.$apply ->
-              nextTick = parseInt(scope.countdownText) - 1
+              nextTick = scope.countdownText - 1
               if nextTick is 0
                 # Replace zero with better copy
                 scope.countdownText = if scope.captureMessage? then scope.captureMessage else 'GO!'
