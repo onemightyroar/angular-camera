@@ -1,7 +1,9 @@
 {
   "name": "angular-camera",
   "version": "0.2.0",
+  "description": "An Angular directive for easily taking pictures from your webcam",
   "dependencies": {},
+  "main": "dist/angular-camera.js",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.4.0",
