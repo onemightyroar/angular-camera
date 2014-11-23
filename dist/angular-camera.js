@@ -84,6 +84,9 @@
             });
           });
         };
+        scope.$on('CAMERA_PICTURE_REQUIRED', function() {
+          return scope.takePicture();
+        });
         /**
         * @description Capture current state of video stream as photo
         */

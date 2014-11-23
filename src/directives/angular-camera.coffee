@@ -76,6 +76,10 @@ angular.module('omr.directives', [])
           scope.$apply ->
             scope.videoStream = ""
 
+      scope.$on('CAMERA_PICTURE_REQUIRED', () ->
+        scope.takePicture()
+      )
+
       ###*
       * @description Capture current state of video stream as photo
       ###
