@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         dest: 'dist/angular-camera.js'
       }
     },
-    ngmin: {
+    ngAnnotate: {
       src: {
         src: '<%= concat.src.src %>',
         dest: '<%= concat.src.dest %>'
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build', ['dev', 'clean:dist', 'concat', 'ngmin', 'uglify']);
+  grunt.registerTask('build', ['dev', 'clean:dist', 'concat', 'ngAnnotate', 'uglify']);
   grunt.registerTask('dev', ['coffee:dev']);
   grunt.registerTask('default', ['build']);
 };
