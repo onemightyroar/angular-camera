@@ -64,12 +64,16 @@ angular.module('omr.directives', [])
       * @description Disable mediastream source and notify camera
       ###
       scope.disableCamera = ->
-        navigator.getUserMedia
+        navigator.getUserMedia {
           audio: false
           video: true
-        , (stream) ->
+        }, ((stream) ->
           scope.$apply ->
-            scope.videoStream = ""
+            scope.videoStream = ''
+        ), (error) ->
+          scope.$apply ->
+            scope.isLoaded = true
+            scope.noCamera = true
 
       ###*
       * @description Capture current state of video stream as photo

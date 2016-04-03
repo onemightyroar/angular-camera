@@ -1,6 +1,6 @@
 {
     "name": "angular-camera",
-    "version": "0.1.3",
+    "version": "0.1.3-wmaikon",
     "dependencies": {},
     "devDependencies": {
         "grunt": "~0.4.1",
