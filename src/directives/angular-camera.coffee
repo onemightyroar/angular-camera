@@ -15,7 +15,7 @@ angular.module('omr.directives', [])
           <canvas id="ng-photo-canvas" width="{{width}}" height="{{height}}" style="display:none;"></canvas>
         </div>
         <div class="ng-camera-controls" ng-hide="hideUI">
-          <button class="btn ng-camera-take-btn" ng-click="takePicture()">Take Picture</button>
+          <button type="button" class="btn ng-camera-take-btn" ng-click="takePicture()">Take Picture</button>
         </div>
       </div>'
     replace: false
