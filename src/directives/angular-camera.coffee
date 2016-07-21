@@ -70,6 +70,10 @@ angular.module('omr.directives', [])
         , (stream) ->
           scope.$apply ->
             scope.videoStream = ""
+        , (error) ->
+          scope.$apply ->
+            scope.isLoaded = true
+            scope.noCamera = true
 
       ###*
       * @description Capture current state of video stream as photo
