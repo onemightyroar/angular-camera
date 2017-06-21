@@ -110,10 +110,10 @@ angular.module('omr.directives', [])
                 # Wait for overlay image to load before making dataURL
                 scope.$apply ->
                   scope.media = canvas.toDataURL('image/jpeg')
-                scope.captureCallback(scope.media) if scope.captureCallback?
+                scope.captureCallback({media: scope.media}) if scope.captureCallback?
             else
               scope.media = canvas.toDataURL('image/jpeg') # Assign to ngModel
-              scope.captureCallback(scope.media) if scope.captureCallback?
+              scope.captureCallback({media: scope.media}) if scope.captureCallback?
 
             scope.hideUI = false
           , countdownTime + 1000 # Add extra second for final message
