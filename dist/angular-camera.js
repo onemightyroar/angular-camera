@@ -38,7 +38,9 @@
               return scope.$apply(function () {
                 scope.stream = stream;
                 scope.isLoaded = true;
-                return scope.videoStream = window.document.getElementById('ng-camera-feed');
+                var video = window.document.getElementById('ng-camera-feed');
+                video.srcObject = stream;
+                return scope.videoStream = video.srcObject;
               });
             }, function (error) {
               return scope.$apply(function () {
