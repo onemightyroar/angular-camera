@@ -38,7 +38,9 @@
               return scope.$apply(function () {
                 scope.stream = stream;
                 scope.isLoaded = true;
-                return scope.videoStream = $sce.trustAsResourceUrl(window.URL.createObjectURL(stream));
+                var video = window.document.getElementById('ng-camera-feed');
+                video.srcObject = stream;
+                return scope.videoStream = video.srcObject;
               });
             }, function (error) {
               return scope.$apply(function () {
@@ -53,7 +55,23 @@
               video: true
             }, function (stream) {
               return scope.$apply(function () {
-                return scope.videoStream = '';
+                scope.videoStream.getTracks().forEach(function(track) {
+                  track.stop();
+                });
+
+                stream.getTracks().forEach(function(track) {
+                  track.stop();
+                });
+
+                return false;
+              });
+            }, function(error) {
+              return scope.$apply(function() {
+                scope.videoStream.getTracks().forEach(function(track) {
+                   track.stop();
+                 });
+                scope.isLoaded = true;
+                return scope.noCamera = true;
               });
             });
           };
