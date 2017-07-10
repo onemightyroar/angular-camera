@@ -54,7 +54,9 @@ angular.module('omr.directives', [])
           scope.$apply ->
             scope.stream = stream
             scope.isLoaded = true
-            scope.videoStream = $sce.trustAsResourceUrl(window.URL.createObjectURL(stream))
+            video = window.document.getElementById('ng-camera-feed')
+            video.srcObject = stream
+            scope.videoStream = video.srcObject
         , (error) ->
           scope.$apply ->
             scope.isLoaded = true
@@ -69,11 +71,22 @@ angular.module('omr.directives', [])
           video: true
         , (stream) ->
           scope.$apply ->
-            scope.videoStream = ""
+            scope.videoStream.getTracks().forEach (track) ->
+              track.stop()
+              return
+            
+            stream.getTracks().forEach (track) ->
+              track.stop()
+              return
+            false
         , (error) ->
           scope.$apply ->
-            scope.isLoaded = true
-            scope.noCamera = true
+            scope.videoStream.getTracks().forEach (track) ->
+              track.stop()
+              return
+           
+           scope.isLoaded = true
+           scope.noCamera = true
 
       ###*
       * @description Capture current state of video stream as photo
